@@ -13,5 +13,6 @@ module.exports = {
   },
   protocolOptions:{
     port:'9042'
-  }
+  },
+  migrationsDir: './migrations',
 }
