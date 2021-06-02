@@ -1,6 +1,6 @@
 {
   "name": "cassandra-migrate",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "Cassandra migration for node.",
   "main": "./app.js",
   "bin": {
@@ -34,8 +34,6 @@
     "cassandra-driver": "^3.0.0",
     "commander": "^2.8.1"
   },
-  "devDependencies": {
-  },
-  "scripts": {
-  }
+  "devDependencies": {},
+  "scripts": {}
 }
