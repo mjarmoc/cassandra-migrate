@@ -6,7 +6,7 @@ var program = require('commander');
 var Common = require('./util/common');
 var fs = require('fs');
 var DB = require('./util/database');
-const Helpers = require ('./util/helpers');
+const Helpers = require('./util/helpers');
 
 /**
  * Usage information.
@@ -44,7 +44,7 @@ program
   .option('-u, --username "<username>"', "database username")
   .option('-p, --password "<password>"', "database password")
   .option('-o, --optionFile "<pathToFile>"', "pass in a javascript option file for the cassandra driver, note that certain option file values can be overridden by provided flags")
-;
+  ;
 
 program.name = 'cassandra-migrate';
 
@@ -103,7 +103,7 @@ program
   .action((options) => {
     let db = new DB(program);
     let common = new Common(fs, db);
-    const dir = getDir(program);
+    const dir = Helpers.getDir(options);
     common.createMigrationTable()
       .then(common.getMigrationFiles(dir))
       .then(() => common.getMigrations())
@@ -111,7 +111,7 @@ program
       .then((migrationLists) => {
         console.log('processing migration lists');
         let Down = require('./commands/down');
-        let down = new Down(db, migrationLists);
+        let down = new Down(db, migrationLists, dir);
         if (!options.skip) {
           console.log('processing migration lists');
           console.log(migrationLists);
@@ -131,7 +131,7 @@ program
       });
   });
 
-  
+
 /*
  //@TODO: add this functionality  so that a cql client isn't directly required
  program
